@@ -17,7 +17,7 @@ app.use(compression());
 app.use(serveFavicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(express.json());
 
-app.use('/:block', baseRouter);
+app.use('/', baseRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

@@ -13,7 +13,7 @@ const formatResource = ({ _id, createdAt, updatedAt, data }) => ({
 
 const formatData = ({ _id, createdAt, updatedAt, ...data }) => data;
 
-router.get('/', async (req, res, next) => {
+router.get('/:block', async (req, res, next) => {
   try {
     const { block } = req.params;
     const resources = await Resource.find({ block });
@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:block/:id', async (req, res, next) => {
   try {
     const { block, id } = req.params;
     const resource = await Resource.findOne({ _id: id, block });
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/:block', async (req, res, next) => {
   try {
     const { block } = req.params;
     const data = req.body ? formatData(req.body) : {};
@@ -44,7 +44,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:block/:id', async (req, res, next) => {
   try {
     const { block, id } = req.params;
     const data = req.body ? formatData(req.body) : {};
@@ -59,7 +59,7 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:block/:id', async (req, res, next) => {
   try {
     const { block, id } = req.params;
     const data = req.body ? formatData(req.body) : {};
@@ -74,7 +74,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:block/:id', async (req, res, next) => {
   try {
     const { block, id } = req.params;
     await Resource.findOneAndDelete({ block, _id: id });
