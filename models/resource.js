@@ -20,4 +20,4 @@ const schema = new mongoose.Schema({
 
 const Resource = mongoose.model('Resource', schema);
 
-module.exports = User;
+module.exports = Resource;
